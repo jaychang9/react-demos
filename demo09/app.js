@@ -39,7 +39,7 @@ const store = createStore(combineReducers({counter,printer}));
 
 // 可以手动订阅更新，也可以事件【绑定到视图层】。
 store.subscribe(() =>
-    console.log(store.getState())
+    console.log(JSON.stringify(store.getState()))
 );
 
 
