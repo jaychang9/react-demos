@@ -1,0 +1,8 @@
+
+div.gerocery_list{
+    background-color: burlywood;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 10px;
+    cursor: pointer;
+}

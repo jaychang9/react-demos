@@ -1,0 +1,13 @@
+
+p{
+    background-color: green;
+    font-size: large;
+}
+
+p:hover{
+    cursor: pointer;
+}
+
+span{
+    background-color: blue;
+}
