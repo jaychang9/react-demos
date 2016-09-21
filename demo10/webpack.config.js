@@ -4,7 +4,7 @@
 var path = require('path');
 
 module.exports = {
-    entry:'./App.js',
+    entry:'./Counter.js',
     output:{
         filename:'bundle.js'
     },

@@ -1,9 +1,9 @@
 /**
  * Created by haibao on 2016/9/6.
  */
-export function change(value){
+export function changeValue(v){
     return {
         type:"change",
-        value:value
+        value:v
     }
 }

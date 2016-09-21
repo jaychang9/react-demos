@@ -527,7 +527,7 @@
 	 * The provided forEachFunc(child, index) will be called for each
 	 * leaf child.
 	 *
-	 * @param {?*} children Children tree container.
+	 * @param {?*} children Children tree containers.
 	 * @param {function(*, int)} forEachFunc
 	 * @param {*} forEachContext Context for forEachContext.
 	 */
@@ -604,7 +604,7 @@
 	 * The provided mapFunction(child, key, index) will be called for each
 	 * leaf child.
 	 *
-	 * @param {?*} children Children tree container.
+	 * @param {?*} children Children tree containers.
 	 * @param {function(*, int)} func The map function.
 	 * @param {*} context Context for mapFunction.
 	 * @return {object} Object containing the ordered map of results.
@@ -628,7 +628,7 @@
 	 *
 	 * See https://facebook.github.io/react/docs/top-level-api.html#react.children.count
 	 *
-	 * @param {?*} children Children tree container.
+	 * @param {?*} children Children tree containers.
 	 * @return {number} The number of children.
 	 */
 	function countChildren(children, context) {
@@ -1490,7 +1490,7 @@
 	}
 
 	/**
-	 * @param {?*} children Children tree container.
+	 * @param {?*} children Children tree containers.
 	 * @param {!string} nameSoFar Name of the key path so far.
 	 * @param {!function} callback Callback to invoke with each child found.
 	 * @param {?*} traverseContext Used to pass information throughout the traversal
@@ -3509,7 +3509,7 @@
 	      var nextChildID = nextChildIDs[i];
 	      var nextChild = get(nextChildID);
 	      !nextChild ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected hook events to fire for the child before its parent includes it in onSetChildren().') : _prodInvariant('140') : void 0;
-	      !(nextChild.childIDs != null || typeof nextChild.element !== 'object' || nextChild.element == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected onSetChildren() to fire for a container child before its parent includes it in onSetChildren().') : _prodInvariant('141') : void 0;
+	      !(nextChild.childIDs != null || typeof nextChild.element !== 'object' || nextChild.element == null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected onSetChildren() to fire for a containers child before its parent includes it in onSetChildren().') : _prodInvariant('141') : void 0;
 	      !nextChild.isMounted ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected onMountComponent() to fire for the child before its parent includes it in onSetChildren().') : _prodInvariant('71') : void 0;
 	      if (nextChild.parentID == null) {
 	        nextChild.parentID = id;

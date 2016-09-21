@@ -267,7 +267,7 @@ webpackJsonp([0],[
 	 * different times, we could race here and see a newer `_renderedChildren` than
 	 * the DOM nodes we see. To avoid this, ReactMultiChild calls
 	 * `prepareToManageChildren` before we change `_renderedChildren`, at which
-	 * time the container's child nodes are always cached (until it unmounts).
+	 * time the containers's child nodes are always cached (until it unmounts).
 	 */
 	function precacheChildNodes(inst, node) {
 	  if (inst._flags & Flags.hasCachedChildNodes) {
@@ -3574,7 +3574,7 @@ webpackJsonp([0],[
 	   * @param {ReactComponent} internalInstance
 	   * @param {ReactReconcileTransaction|ReactServerRenderingTransaction} transaction
 	   * @param {?object} the containing host component instance
-	   * @param {?object} info about the host container
+	   * @param {?object} info about the host containers
 	   * @return {?string} Rendered markup to be inserted into the DOM.
 	   * @final
 	   * @internal
@@ -5829,7 +5829,7 @@ webpackJsonp([0],[
 
 	var createMicrosoftUnsafeLocalFunction = __webpack_require__(85);
 
-	// SVG temp container for IE lacking innerHTML
+	// SVG temp containers for IE lacking innerHTML
 	var reusableSVGContainer;
 
 	/**
@@ -6205,7 +6205,7 @@ webpackJsonp([0],[
 	var invariant = __webpack_require__(8);
 
 	/**
-	 * Dummy container used to render all markup.
+	 * Dummy containers used to render all markup.
 	 */
 	var dummyNode = ExecutionEnvironment.canUseDOM ? document.createElement('div') : null;
 
@@ -6423,7 +6423,7 @@ webpackJsonp([0],[
 	var invariant = __webpack_require__(8);
 
 	/**
-	 * Dummy container used to detect which wraps are necessary.
+	 * Dummy containers used to detect which wraps are necessary.
 	 */
 	var dummyNode = ExecutionEnvironment.canUseDOM ? document.createElement('div') : null;
 
@@ -6982,7 +6982,7 @@ webpackJsonp([0],[
 	   * @internal
 	   * @param {ReactReconcileTransaction|ReactServerRenderingTransaction} transaction
 	   * @param {?ReactDOMComponent} the parent component instance
-	   * @param {?object} info about the host container
+	   * @param {?object} info about the host containers
 	   * @param {object} context
 	   * @return {string} The computed markup.
 	   */
@@ -7034,7 +7034,7 @@ webpackJsonp([0],[
 
 	    assertValidProps(this, props);
 
-	    // We create tags in the namespace of their parent container, except HTML
+	    // We create tags in the namespace of their parent containers, except HTML
 	    // tags get no namespace.
 	    var namespaceURI;
 	    var parentTag;
@@ -8784,7 +8784,7 @@ webpackJsonp([0],[
 	   * they bubble to document.
 	   *
 	   * @param {string} registrationName Name of listener (e.g. `onClick`).
-	   * @param {object} contentDocumentHandle Document which owns the container
+	   * @param {object} contentDocumentHandle Document which owns the containers
 	   */
 	  listenTo: function (registrationName, contentDocumentHandle) {
 	    var mountAt = contentDocumentHandle;
@@ -14344,7 +14344,7 @@ webpackJsonp([0],[
 	}
 
 	/**
-	 * Get the next sibling within a container. This will walk up the
+	 * Get the next sibling within a containers. This will walk up the
 	 * DOM if a node's siblings have been exhausted.
 	 *
 	 * @param {DOMElement|DOMTextNode} node
@@ -16498,21 +16498,21 @@ webpackJsonp([0],[
 
 	/**
 	 * Mounting is the process of initializing a React component by creating its
-	 * representative DOM elements and inserting them into a supplied `container`.
-	 * Any prior content inside `container` is destroyed in the process.
+	 * representative DOM elements and inserting them into a supplied `containers`.
+	 * Any prior content inside `containers` is destroyed in the process.
 	 *
 	 *   ReactMount.render(
 	 *     component,
-	 *     document.getElementById('container')
+	 *     document.getElementById('containers')
 	 *   );
 	 *
-	 *   <div id="container">                   <-- Supplied `container`.
+	 *   <div id="containers">                   <-- Supplied `containers`.
 	 *     <div data-reactid=".3">              <-- Rendered reactRoot of React
 	 *       // ...                                 component.
 	 *     </div>
 	 *   </div>
 	 *
-	 * Inside of `container`, the first element rendered is the "reactRoot".
+	 * Inside of `containers`, the first element rendered is the "reactRoot".
 	 */
 	var ReactMount = {
 
@@ -16525,10 +16525,10 @@ webpackJsonp([0],[
 
 	  /**
 	   * This is a hook provided to support rendering React components while
-	   * ensuring that the apparent scroll position of its `container` does not
+	   * ensuring that the apparent scroll position of its `containers` does not
 	   * change.
 	   *
-	   * @param {DOMElement} container The `container` being rendered into.
+	   * @param {DOMElement} container The `containers` being rendered into.
 	   * @param {function} renderCallback This must be called once to do the render.
 	   */
 	  scrollMonitor: function (container, renderCallback) {
@@ -16539,7 +16539,7 @@ webpackJsonp([0],[
 	   * Take a component that's already mounted into the DOM and replace its props
 	   * @param {ReactComponent} prevComponent component instance already in the DOM
 	   * @param {ReactElement} nextElement component instance to render
-	   * @param {DOMElement} container container to render into
+	   * @param {DOMElement} container containers to render into
 	   * @param {?function} callback function triggered on completion
 	   */
 	  _updateRootComponent: function (prevComponent, nextElement, nextContext, container, callback) {
@@ -16557,7 +16557,7 @@ webpackJsonp([0],[
 	   * Render a new component into the DOM. Hooked by hooks!
 	   *
 	   * @param {ReactElement} nextElement element to render
-	   * @param {DOMElement} container container to render into
+	   * @param {DOMElement} container containers to render into
 	   * @param {boolean} shouldReuseMarkup if we should skip the markup insertion
 	   * @return {ReactComponent} nextComponent
 	   */
@@ -16567,7 +16567,7 @@ webpackJsonp([0],[
 	    // verify that that's the case.
 	    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, '_renderNewRootComponent(): Render methods should be a pure function ' + 'of props and state; triggering nested component updates from ' + 'render is not allowed. If necessary, trigger nested updates in ' + 'componentDidUpdate. Check the render method of %s.', ReactCurrentOwner.current && ReactCurrentOwner.current.getName() || 'ReactCompositeComponent') : void 0;
 
-	    !isValidContainer(container) ? process.env.NODE_ENV !== 'production' ? invariant(false, '_registerComponent(...): Target container is not a DOM element.') : _prodInvariant('37') : void 0;
+	    !isValidContainer(container) ? process.env.NODE_ENV !== 'production' ? invariant(false, '_registerComponent(...): Target containers is not a DOM element.') : _prodInvariant('37') : void 0;
 
 	    ReactBrowserEventEmitter.ensureScrollValueMonitoring();
 	    var componentInstance = instantiateReactComponent(nextElement, false);
@@ -16585,9 +16585,9 @@ webpackJsonp([0],[
 	  },
 
 	  /**
-	   * Renders a React component into the DOM in the supplied `container`.
+	   * Renders a React component into the DOM in the supplied `containers`.
 	   *
-	   * If the React component was previously rendered into `container`, this will
+	   * If the React component was previously rendered into `containers`, this will
 	   * perform an update on it and only mutate the DOM as necessary to reflect the
 	   * latest React component.
 	   *
@@ -16595,7 +16595,7 @@ webpackJsonp([0],[
 	   * @param {ReactElement} nextElement Component element to render.
 	   * @param {DOMElement} container DOM element to render into.
 	   * @param {?function} callback function triggered on completion
-	   * @return {ReactComponent} Component instance rendered in `container`.
+	   * @return {ReactComponent} Component instance rendered in `containers`.
 	   */
 	  renderSubtreeIntoContainer: function (parentComponent, nextElement, container, callback) {
 	    !(parentComponent != null && ReactInstanceMap.has(parentComponent)) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'parentComponent must be a valid React Component') : _prodInvariant('38') : void 0;
@@ -16608,7 +16608,7 @@ webpackJsonp([0],[
 	    // Check if it quacks like an element
 	    nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : _prodInvariant('39', typeof nextElement === 'string' ? ' Instead of passing a string like \'div\', pass ' + 'React.createElement(\'div\') or <div />.' : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' : nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : void 0;
 
-	    process.env.NODE_ENV !== 'production' ? warning(!container || !container.tagName || container.tagName.toUpperCase() !== 'BODY', 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : void 0;
+	    process.env.NODE_ENV !== 'production' ? warning(!container || !container.tagName || container.tagName.toUpperCase() !== 'BODY', 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a containers element created ' + 'for your app.') : void 0;
 
 	    var nextWrappedElement = ReactElement(TopLevelWrapper, null, null, null, null, null, nextElement);
 
@@ -16665,29 +16665,29 @@ webpackJsonp([0],[
 	  },
 
 	  /**
-	   * Renders a React component into the DOM in the supplied `container`.
+	   * Renders a React component into the DOM in the supplied `containers`.
 	   * See https://facebook.github.io/react/docs/top-level-api.html#reactdom.render
 	   *
-	   * If the React component was previously rendered into `container`, this will
+	   * If the React component was previously rendered into `containers`, this will
 	   * perform an update on it and only mutate the DOM as necessary to reflect the
 	   * latest React component.
 	   *
 	   * @param {ReactElement} nextElement Component element to render.
 	   * @param {DOMElement} container DOM element to render into.
 	   * @param {?function} callback function triggered on completion
-	   * @return {ReactComponent} Component instance rendered in `container`.
+	   * @return {ReactComponent} Component instance rendered in `containers`.
 	   */
 	  render: function (nextElement, container, callback) {
 	    return ReactMount._renderSubtreeIntoContainer(null, nextElement, container, callback);
 	  },
 
 	  /**
-	   * Unmounts and destroys the React component rendered in the `container`.
+	   * Unmounts and destroys the React component rendered in the `containers`.
 	   * See https://facebook.github.io/react/docs/top-level-api.html#reactdom.unmountcomponentatnode
 	   *
 	   * @param {DOMElement} container DOM element containing a React component.
 	   * @return {boolean} True if a component was found in and unmounted from
-	   *                   `container`
+	   *                   `containers`
 	   */
 	  unmountComponentAtNode: function (container) {
 	    // Various parts of our code (such as ReactCompositeComponent's
@@ -16696,7 +16696,7 @@ webpackJsonp([0],[
 	    // render but we still don't expect to be in a render call here.)
 	    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, 'unmountComponentAtNode(): Render methods should be a pure function ' + 'of props and state; triggering nested component updates from render ' + 'is not allowed. If necessary, trigger nested updates in ' + 'componentDidUpdate. Check the render method of %s.', ReactCurrentOwner.current && ReactCurrentOwner.current.getName() || 'ReactCompositeComponent') : void 0;
 
-	    !isValidContainer(container) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'unmountComponentAtNode(...): Target container is not a DOM element.') : _prodInvariant('40') : void 0;
+	    !isValidContainer(container) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'unmountComponentAtNode(...): Target containers is not a DOM element.') : _prodInvariant('40') : void 0;
 
 	    if (process.env.NODE_ENV !== 'production') {
 	      process.env.NODE_ENV !== 'production' ? warning(!nodeIsRenderedByOtherInstance(container), 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by another copy of React.') : void 0;
@@ -16708,11 +16708,11 @@ webpackJsonp([0],[
 	      // root node.
 	      var containerHasNonRootReactChild = hasNonRootReactChild(container);
 
-	      // Check if the container itself is a React root node.
+	      // Check if the containers itself is a React root node.
 	      var isContainerReactRoot = container.nodeType === 1 && container.hasAttribute(ROOT_ATTR_NAME);
 
 	      if (process.env.NODE_ENV !== 'production') {
-	        process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
+	        process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by React and is not a top-level containers. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its containers.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
 	      }
 
 	      return false;
@@ -16723,7 +16723,7 @@ webpackJsonp([0],[
 	  },
 
 	  _mountImageIntoNode: function (markup, container, instance, shouldReuseMarkup, transaction) {
-	    !isValidContainer(container) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'mountComponentIntoNode(...): Target container is not valid.') : _prodInvariant('41') : void 0;
+	    !isValidContainer(container) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'mountComponentIntoNode(...): Target containers is not valid.') : _prodInvariant('41') : void 0;
 
 	    if (shouldReuseMarkup) {
 	      var rootElement = getReactRootElementInContainer(container);
@@ -16741,7 +16741,7 @@ webpackJsonp([0],[
 	        if (process.env.NODE_ENV !== 'production') {
 	          // because rootMarkup is retrieved from the DOM, various normalizations
 	          // will have occurred which will not be present in `markup`. Here,
-	          // insert markup into a <div> or <iframe> depending on the container
+	          // insert markup into a <div> or <iframe> depending on the containers
 	          // type to perform the same normalizations before comparing.
 	          var normalizer;
 	          if (container.nodeType === ELEMENT_NODE_TYPE) {
@@ -16763,7 +16763,7 @@ webpackJsonp([0],[
 	        !(container.nodeType !== DOC_NODE_TYPE) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'You\'re trying to render a component to the document using server rendering but the checksum was invalid. This usually means you rendered a different component type or props on the client from the one on the server, or your render() methods are impure. React cannot handle this case due to cross-browser quirks by rendering at the document root. You should look for environment dependent code in your components and ensure the props are the same client and server side:\n%s', difference) : _prodInvariant('42', difference) : void 0;
 
 	        if (process.env.NODE_ENV !== 'production') {
-	          process.env.NODE_ENV !== 'production' ? warning(false, 'React attempted to reuse markup in a container but the ' + 'checksum was invalid. This generally means that you are ' + 'using server rendering and the markup generated on the ' + 'server was not what the client was expecting. React injected ' + 'new markup to compensate which works but you have lost many ' + 'of the benefits of server rendering. Instead, figure out ' + 'why the markup being generated is different on the client ' + 'or server:\n%s', difference) : void 0;
+	          process.env.NODE_ENV !== 'production' ? warning(false, 'React attempted to reuse markup in a containers but the ' + 'checksum was invalid. This generally means that you are ' + 'using server rendering and the markup generated on the ' + 'server was not what the client was expecting. React injected ' + 'new markup to compensate which works but you have lost many ' + 'of the benefits of server rendering. Instead, figure out ' + 'why the markup being generated is different on the client ' + 'or server:\n%s', difference) : void 0;
 	        }
 	      }
 	    }
