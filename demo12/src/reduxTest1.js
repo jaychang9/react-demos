@@ -18,7 +18,7 @@ function action2(){
 }
 
 function reducer(state,action){
-    console.log('reducer invoke... '+ JSON.stringify(state));
+    console.log('reducer invoke... '+action.type+ JSON.stringify(state));
     switch (action.type){
         case 'ACTION1':
             return state.concat({text:action.text});
@@ -36,9 +36,9 @@ store.subscribe(function(){
     console.log('state changed.'+ JSON.stringify(store.getState()));
 });
 
-store.dispatch(action1());
-
-store.dispatch(action2());
+// store.dispatch(action1());
+//
+// store.dispatch(action2());
 
 
 

@@ -10,22 +10,18 @@ function action1(){
         text:"I am Action1"
     }
 }
-
 function action2(){
     return {
         type:"ACTION2",
         text:"I am Action2"
     }
 }
-
-
 function action3(){
     return {
         type:"ACTION3",
         text:"I am Action3"
     }
 }
-
 function action4(){
     return {
         type:"ACTION4",
@@ -34,30 +30,35 @@ function action4(){
 }
 
 function reducer1(state,action){
-    console.log('reducer invoke... '+ JSON.stringify(state));
+    state = typeof state === 'undefined'?{}:state;
+    console.log('reducer1 invoke... action.type='+action.type+' '+ JSON.stringify(state));
     switch (action.type){
         case 'ACTION1':
             return Object.assign({},state,{text:action.text});
         case 'ACTION2':
             return Object.assign({},state,{text:action.text});
         default :
-            return state === undefined ?{}:state;
+            return state;
     }
 }
 
 function reducer2(state,action){
-    console.log('reducer invoke... '+ JSON.stringify(state));
+    state = typeof state === 'undefined'?{}:state;
+    console.log('reducer2 invoke... action.type='+action.type+' '+ JSON.stringify(state));
     switch (action.type){
         case 'ACTION3':
             return Object.assign({},state,{text:action.text});
         case 'ACTION4':
             return Object.assign({},state,{text:action.text});
         default :
-            return state === undefined ?{}:state;
+            return state;
     }
 }
 
-const  reducers = combineReducers({reducer1:reducer1,reducer2:reducer2});
+//console.dir(global.process.env)
+
+//const  reducers = combineReducers({reducer1:reducer1,reducer2:reducer2});
+const  reducers = combineReducers({reducer1,reducer2});
 
 //这里如果还是用['Use Redux']数组作为第二个参数，会报错
 //The preloadedState argument passed to createStore has unexpected type of "Array". Expected argument to be an object with the following keys: "reducer1", "reducer2"
@@ -65,14 +66,14 @@ const  reducers = combineReducers({reducer1:reducer1,reducer2:reducer2});
 //const store = createStore(reducers,['Use Redux']);
 
 
-const  store = createStore(reducers,{reducer1:reducer1,reducer2:reducer2});
+const  store = createStore(reducers,{reducer1:{},reducer2:{}});
 
 store.subscribe(function(){
     console.log("state changed "+JSON.stringify(store.getState()));
 });
-
-store.dispatch(action1());
-store.dispatch(action3());
+//
+ store.dispatch(action1());
+// store.dispatch(action3());
 
 
 
