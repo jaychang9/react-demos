@@ -1,11 +1,19 @@
 "use strict";
 
 function combineReducers(reducers){
-    return reducers;
+   return (state,action) => {
+       state = typeof state === 'undefined' ? {}:state;
+       let reducerKeys = Object.keys(reducers);
+       //返回总的state
+       return reducerKeys.reduce(function(nextState,reducerKey){
+           nextState[reducerKey] = reducers[reducerKey](state[reducerKey],action);
+           return nextState;;
+       },{});
+   }
 }
 
 
-function createStore(reducers,initialState){
+function createStore(reducer,initialState){
 
     let state = {};
     let listeners = [];
@@ -20,10 +28,7 @@ function createStore(reducers,initialState){
 
     let dispatch = action =>{
         //reducer执行完返回一个小新的state(旧state+action=>新state)
-
-        reducers.forEach((reducer)=>{
-            state = reducer(getState(),action);
-        });
+        state = reducer(state,action);
         listeners.forEach(listener=>listener());
     }
 
@@ -36,9 +41,9 @@ function createStore(reducers,initialState){
     if(typeof initialState === 'undefined'){
         state = initialState;
     }
-
     return {getState,dispatch,subscribe};
 }
+
 
 const actions = [
     {type:"ADD",payload:1},
@@ -60,32 +65,47 @@ function reducer1(state ,action) {
 }
 
 function reducer2(state ,action) {
-    state = typeof state === 'undefined'?0:state;
+    state = typeof state === 'undefined'?[]:state;
     switch (action.type){
-        case "ADD":
-            return state+action.payload;
-        case "DEC":
-            return state-action.payload;
+        case "ADD_TODO":
+            return state.concat({text:action.text})
+        case "COMPLETED":
+            return state.concat({text:action.text});
         default:
             return state;
     }
 }
 
 //合并reducer
-let reducers = combineReducers({reducer1,reducer2});
+let reducers = combineReducers({reducer1,reducer2});//与let reducers = combineReducers({reducer1:reducer1,reducer2:reducer2});等价的
 
-const  store = createStore(reducers,{reducer1:0,reducer2:[]});
+const store = createStore(reducers);
 
 let l1  =store.subscribe(function(){
-    console.log("这是一个监听器1 "+store.getState());
+    console.log("这是一个监听器1 "+JSON.stringify(store.getState()));
 });
 let l2 = store.subscribe(function(){
-    console.log("这是一个监听器2 "+store.getState());
+    console.log("这是一个监听器2 "+JSON.stringify(store.getState()));
 });
 
 
 
 store.dispatch(actions[0]);
-store.dispatch(actions[0]);
-store.dispatch(actions[1]);
-store.dispatch(actions[1]);
+// store.dispatch(actions[0]);
+// store.dispatch(actions[1]);
+// store.dispatch(actions[1]);
+store.dispatch(actions[2]);
+
+
+
+function combineReducers(reducers){
+    return function(state,action) {
+        state = typeof state === 'undefined' ? {}:state;
+        let reducerKeys = Object.keys(reducers);
+        //返回总的state
+        return reducerKeys.reduce(function(nextState,reducerKey){
+            nextState[reducerKey] = reducers[reducerKey](state[reducerKey],action);
+            return nextState;;
+        },{});
+    }
+}
