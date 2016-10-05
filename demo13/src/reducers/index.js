@@ -3,8 +3,8 @@
  */
 import {combineReducers} from 'redux';
 import todos from './todos';
-import setVisibilityFilter from './setVisibilityFilter';
+import visibilityFilter from './visibilityFilter';
 
-const rootReducer = combineReducers({todos,setVisibilityFilter});
+const rootReducer = combineReducers({todos,visibilityFilter});
 
 export default rootReducer;
